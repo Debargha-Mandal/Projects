@@ -1,0 +1,274 @@
+/* General Reset and Base Styles */
+:root {
+    --dark-bg: #1e1f3a; /* Main background color */
+    --card-bg: #272a44; /* Card/section background color */
+    --light-text: #ffffff;
+    --subtle-text: #a0a4c0;
+    --primary-color: #5b60e6; /* Blue for highlights/buttons */
+    --primary-gradient: linear-gradient(180deg, #5b60e6, #41459a);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 20px;
+    /* This creates the rainy window effect */
+    background-image: url('rain-texture.png'); /* You'd need a semi-transparent rain texture image */
+    background-size: cover;
+}
+
+.weather-dashboard {
+    max-width: 1400px; /* Adjust as needed */
+    margin: 0 auto;
+    backdrop-filter: blur(8px); /* Crucial for the "through the window" look */
+    background-color: rgba(30, 31, 58, 0.7); /* Semi-transparent dark overlay */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Header Styling --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    flex-grow: 1;
+    max-width: 400px;
+    margin: 0 50px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    padding: 10px 15px;
+    color: var(--light-text);
+    outline: none;
+    flex-grow: 1;
+}
+
+.search-bar button {
+    background: transparent;
+    border: none;
+    padding: 10px 20px;
+    color: var(--light-text);
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--light-text);
+}
+
+/* --- Today's Main Forecast --- */
+.today-main-forecast {
+    display: grid;
+    grid-template-areas:
+        "title summary"
+        "datetime summary"
+        "temp summary"
+        "feelslike summary";
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.today-main-forecast h2 { grid-area: title; font-size: 1.5rem; }
+.date-time { grid-area: datetime; color: var(--subtle-text); }
+.main-temp { grid-area: temp; font-size: 5rem; font-weight: 300; line-height: 1; }
+.feels-like { grid-area: feelslike; color: var(--subtle-text); }
+
+.today-summary {
+    grid-area: summary;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.today-summary .large-icon {
+    font-size: 5rem;
+    color: #ffcc00; /* Yellow for lightning */
+    /* Add a subtle animation/glow for the storm cloud */
+}
+
+.today-summary ul {
+    list-style: none;
+    margin-top: 15px;
+}
+.today-summary li {
+    color: var(--subtle-text);
+    margin: 5px 0;
+}
+
+/* --- Hourly Forecast Styling --- */
+.hourly-forecast {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 0px 20px;
+    margin-bottom: 30px;
+}
+
+.forecast-headers {
+    display: flex;
+    color: var(--subtle-text);
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    position: relative; /* Needed for absolute positioning of the ::before pseudo-element */
+}
+
+.hourly-items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hour-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--subtle-text);
+    transition: background-color 0.3s;
+}
+
+.hour-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.hour-item .small-icon {
+    font-size: 1.5rem;
+    margin: 5px 0;
+}
+
+.hour-item .temp {
+    color: var(--light-text);
+    font-weight: bold;
+}
+
+/* --- New CSS Additions for Visibility and Header Highlighting --- */
+
+/* Hide non-selected data values */
+.hourly-items .hidden {
+    display: none;
+}
+
+/* Ensure the visible data value is styled correctly */
+.hourly-items .data-value {
+    color: var(--light-text);
+    font-weight: bold;
+    margin-top: 5px; /* Add some space below the icon */
+    font-size: 1rem; /* Match the original temp size */
+}
+
+/* Highlight the currently active header */
+.forecast-headers span.active {
+    color: var(--light-text); /* Bold white text */
+    font-weight: bold;
+}
+
+.forecast-headers span.active::before {
+    content: ''; /* Essential for pseudo-elements */
+    position: absolute;
+    top: 0; /* Position at the very top of the span */
+    left: 50%; /* Start from the center */
+    transform: translateX(-50%); /* Pull back by half its width to center */
+    width: 60%; /* Adjust width of the bar as desired */
+    height: 3px; /* Thickness of the bar */
+    background-color: var(--light-text); /* White color */
+    border-radius: 2px; /* Slightly rounded ends for the bar */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover State */
+.forecast-headers span:not(.active):hover {
+    color: var(--light-text); /* Lighter text on hover, if not already active */
+    cursor: pointer;
+}
+
+.forecast-headers span {
+    min-width: 20%;
+    text-align: center;
+    padding-top: 15px; /* Add padding to make space for the top bar */
+    padding-bottom: 5px; /* Keep some bottom padding for good measure */
+    position: relative; /* Allow positioning of pseudo-element relative to span */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* --- Weekly Forecast Styling --- */
+.weekly-forecast h2 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.weekly-items {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Allows horizontal scrolling if many days are present */
+    padding-bottom: 10px;
+}
+
+.day-item {
+    background-color: var(--card-bg);
+    min-width: 120px;
+    padding: 15px 10px;
+    border-radius: 15px;
+    text-align: center;
+    transition: background-color 0.3s;
+    border: 2px solid transparent;
+}
+
+.day-item.active {
+    background: var(--primary-gradient); /* Highlight for the current day */
+    border-color: var(--light-text);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.day-item .day-name, .day-item .day-detail {
+    font-size: 0.75rem;
+    color: var(--subtle-text);
+}
+
+.day-item.active .day-name, .day-item.active .day-detail {
+    color: var(--light-text);
+}
+
+.day-item i {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.day-item .day-temp {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

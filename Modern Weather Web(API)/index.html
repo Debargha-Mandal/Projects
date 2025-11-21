@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Weather Web</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="weather-dashboard">
+
+        <header class="main-header">
+            <div class="location">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <p>Weather.</p>
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Location</span>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search area here...">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="user-profile">
+                <img src="user-placeholder.jpg" alt="User" class="profile-pic">
+            </div>
+        </header>
+
+        <main class="content-container">
+
+            <section class="today-main-forecast">
+                <h2>Today's Weather Forecast</h2>
+                <p class="date-time">Wednesday, July 12. 10:03 AM</p>
+                <div class="temperature-details">
+                    <span class="main-temp">30 °C</span>
+                    <p class="feels-like">Feels 32 °C</p>
+                </div>
+
+                <div class="today-summary">
+                    <i class="fa-solid fa-cloud-bolt large-icon"></i> <h3>Thundershower</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-cloud-rain"></i> Precipitation: **80%**</li>
+                        <li><i class="fa-solid fa-droplet"></i> Humidity: **74%**</li>
+                        <li><i class="fa-solid fa-wind"></i> Wind: **18 km/h**</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="hourly-forecast">
+                <div class="forecast-headers">
+                    <span>Temperature</span>
+                    <span>Wind</span>
+                    <span>Precipitation</span>
+                    <span>Humidity</span>
+                </div>
+                <div class="hourly-items">
+                <div class="hour-item">
+                    <p class="time">1 AM</p>
+                    <i class="fa-solid fa-cloud-moon small-icon"></i>
+                    <p class="data-value temp active">28°</p> 
+                    <p class="data-value wind hidden">10 km/h</p>
+                    <p class="data-value precip hidden">30%</p>
+                    <p class="data-value humid hidden">85%</p>
+                </div>
+                <div class="hour-item">
+                    <p class="time">3 AM</p>
+                    <i class="fa-solid fa-cloud-moon small-icon"></i>
+                    <p class="data-value temp active">29°</p>
+                    <p class="data-value wind hidden">12 km/h</p>
+                    <p class="data-value precip hidden">25%</p>
+                    <p class="data-value humid hidden">80%</p>
+                </div>
+                </div>
+            </section>
+
+            <section class="weekly-forecast">
+                <h2>Weekly Forecast</h2>
+                <div class="weekly-items">
+                    <div class="day-item active">
+                        <p class="day-name">July 12</p>
+                        <p class="day-date">WED</p>
+                        <i class="fa-solid fa-cloud-showers-heavy"></i>
+                        <p class="day-temp">32° 27°</p>
+                        <p class="day-condition">Thundershower</p>
+                        <p class="day-detail">Precipitation **80%**</p>
+                        <p class="day-detail">Humidity **77%**</p>
+                    </div>
+                    </div>
+            </section>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
