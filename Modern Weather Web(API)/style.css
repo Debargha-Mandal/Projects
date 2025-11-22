@@ -78,14 +78,6 @@ body {
     background-color: var(--primary-color);
 }
 
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--light-text);
-}
-
 /* --- Today's Main Forecast --- */
 .today-main-forecast {
     display: grid;
@@ -233,6 +225,7 @@ body {
 
 .weekly-items {
     display: flex;
+    justify-content: space-evenly;
     gap: 15px;
     overflow-x: auto; /* Allows horizontal scrolling if many days are present */
     padding-bottom: 10px;
